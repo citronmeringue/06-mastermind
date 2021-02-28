@@ -1,15 +1,9 @@
 class Board
   attr_accessor :board
 
-  COLOURS = ["yellow", "green", "blue", "red", "violet", "orange"]
   def initialize
     @size = 4
     @board = Array.new()
-  end
-
-  # random selection / each selection is unique
-  def code_maker
-    COLOURS.sample(4).freeze
   end
 
   def reinitialize_guess
@@ -18,6 +12,10 @@ class Board
 
   def display
     @board
+  end
+
+  def computer_guess_board(array)
+    @board = array
   end
 
   def user_choice(colour)
@@ -35,12 +33,18 @@ class Board
         end
       end
     end
-    puts "#{array_clues.sort}"
+    puts "Colour Pegs : #{array_clues.sort}"
     array_clues.sort
   end
 
   def check_win?(array_code, array_guess)
     toto = check_user_guess(array_code, array_guess)
-    toto.all? { |element| element == 'O' && toto.length == 4 }
+    toto.all? { |element| element == 'O' && toto.length == @size }
   end
+
+
+
+
+
 end
+
